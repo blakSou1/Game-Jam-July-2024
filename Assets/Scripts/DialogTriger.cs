@@ -9,11 +9,20 @@ public class DialogTriger : MonoBehaviour
 
     InkExample dialogScripts;
 
-    void Start()
+    private void Start()
     {
         dialogScripts = dialogPanel.GetComponent<InkExample>();
-
+    }
+    private void OnEnable()
+    {
+        GetComponent<PointTrigerObject>().trigerE += StartDialog;
+    }
+    private void StartDialog()
+    {
         dialogScripts.StartDialog(textDialog);
     }
-
+    private void OnDisable()
+    {
+        GetComponent<PointTrigerObject>().trigerE -= StartDialog;
+    }
 }
