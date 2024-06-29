@@ -8,6 +8,7 @@ public class DialogTriger : MonoBehaviour
     [SerializeField] private GameObject dialogPanel;
 
     InkExample dialogScripts;
+    bool statDialog = false;
 
     private void Start()
     {
@@ -19,7 +20,18 @@ public class DialogTriger : MonoBehaviour
     }
     private void StartDialog()
     {
-        dialogScripts.StartDialog(textDialog);
+        if (!statDialog)
+        {
+            statDialog = true;
+            dialogScripts.enabled = true;
+            dialogScripts.EndHistory += EndIstory;
+
+            dialogScripts.StartDialog(textDialog);
+        }
+    }
+    private void EndIstory()
+    {
+        statDialog = false;
     }
     private void OnDisable()
     {

@@ -4,13 +4,16 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
+using System;
 
 public class InkExample : MonoBehaviour
 {
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private GameObject imagePrefab;
+    [SerializeField] private GameObject player;
 
     private Story story;
+    public event Action EndHistory;
 
     private void Start()
     {
@@ -20,7 +23,8 @@ public class InkExample : MonoBehaviour
     public void StartDialog(TextAsset inkJSONAsset)
     {
         story = new Story(inkJSONAsset.text);
-
+        player.GetComponent<PlayerMove>().enabled = false;
+        player.GetComponent<PlayerTriger>().InputE += InputHistory;
         Refresh();
     }//диалог запускается вызовом этого метода
 
@@ -40,23 +44,46 @@ public class InkExample : MonoBehaviour
 
     private void NewButton()
     {
-        foreach (Choice choice in story.currentChoices)
+        if (story.currentChoices.Count > 0)
         {
-            Button choiceButton = Instantiate(buttonPrefab, transform) as Button;//проверяем можем ли мы получить у прифаба компонент буттон и получаем его
-            RectTransform buttonRect = choiceButton.GetComponent<RectTransform>();
-            buttonRect.anchorMin = new Vector2(0.2f, 0.1f + 0.15f * choice.index);
-            buttonRect.anchorMax = new Vector2(0.8f, 0.25f + 0.15f * choice.index);
+            inputE = false;
+            foreach (Choice choice in story.currentChoices)
+            {
+                Button choiceButton = Instantiate(buttonPrefab, transform) as Button;//проверяем можем ли мы получить у прифаба компонент буттон и получаем его
+                RectTransform buttonRect = choiceButton.GetComponent<RectTransform>();
+                buttonRect.anchorMin = new Vector2(0.2f, 0.1f + 0.15f * choice.index);
+                buttonRect.anchorMax = new Vector2(0.8f, 0.25f + 0.15f * choice.index);
 
-            Text choiceText = choiceButton.GetComponentInChildren<Text>();
-            choiceText.text = choice.text;//помещаем текст варианта выбора в текст кнопки для выбора
+                Text choiceText = choiceButton.GetComponentInChildren<Text>();
+                choiceText.text = choice.text;//помещаем текст варианта выбора в текст кнопки для выбора
 
-            choiceButton.onClick.AddListener(delegate {
-                OnClickChoiceButton(choice);
-            });//делегат хранит ссылку например на метод
+                choiceButton.onClick.AddListener(delegate
+                {
+                    OnClickChoiceButton(choice);
+                });//делегат хранит ссылку например на метод
 
-        }//currentChoices заполняется вариантами выбора и каждый вариант содержит индекс и текст
+            }//currentChoices заполняется вариантами выбора и каждый вариант содержит индекс и текст
+
+        }
+        else
+            inputE = true;
     }
-
+    bool inputE = false;
+    private void InputHistory()
+    {
+        if (inputE)
+        {
+            if (!story.canContinue)
+            {
+                player.GetComponent<PlayerTriger>().InputE -= InputHistory;
+                player.GetComponent<PlayerMove>().enabled = true;
+                ClearUI();
+                EndHistory?.Invoke();
+                this.enabled = false;
+            }
+            Refresh();
+        }
+    }
     private void NewImage()
     {
         GameObject image = Instantiate(imagePrefab, transform) as GameObject;
@@ -92,20 +119,15 @@ public class InkExample : MonoBehaviour
 
     private void GetNextStoryBlock(Text newTextObject, RectTransform imageRect)
     {
-        string text = "";
+        string text;
         if (story.canContinue)
         {
-            text = story.ContinueMaximally();
+            text = story.Continue();
             newTextObject.text = text;
 
             float textHeight = LayoutUtility.GetPreferredHeight(newTextObject.rectTransform);
 
             imageRect.sizeDelta = new Vector2(imageRect.sizeDelta.x, textHeight);
-        }
-        else
-        {
-            ClearUI();
-            this.enabled = false;
         }
     }//метод при помощи canContinue проверяет есть ли следующая история
     //а Continue загружает следующую историю
