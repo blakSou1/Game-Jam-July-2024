@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+
+открытый  класс  PlayerMovement : MonoBehaviour  
 {
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float runSpeed = 5f;
