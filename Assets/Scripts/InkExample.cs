@@ -23,7 +23,7 @@ public class InkExample : MonoBehaviour
     public void StartDialog(TextAsset inkJSONAsset)
     {
         story = new Story(inkJSONAsset.text);
-        player.GetComponent<PlayerMove>().enabled = false;
+        player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<PlayerTriger>().InputE += InputHistory;
         Refresh();
     }//диалог запускается вызовом этого метода
@@ -123,7 +123,7 @@ public class InkExample : MonoBehaviour
         else
         {
             player.GetComponent<PlayerTriger>().InputE -= InputHistory;
-            player.GetComponent<PlayerMove>().enabled = true;
+            player.GetComponent<PlayerMovement>().enabled = true;
             ClearUI();
             EndHistory?.Invoke();
             this.enabled = false;
