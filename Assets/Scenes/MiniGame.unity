@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 6432883}
   - component: {fileID: 6432882}
   - component: {fileID: 6432881}
-  - component: {fileID: 6432886}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -218,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393a39182cfa7d04d84a379bea11d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusTrigerCollider: 0
+  statusTrigerCollider: 1
 --- !u!212 &6432884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -286,19 +285,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6432886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6432880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393a39182cfa7d04d84a379bea11d576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statusTrigerCollider: 0
 --- !u!1 &345185625
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ae975c58e338443b7e1f9d02f0af2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textDialog: {fileID: 4900000, guid: 730f6ba2a9abe25478f00c77d02a7a10, type: 3}
+  textDialog:
+  - {fileID: 4900000, guid: 896b2faaf132b5d488f6a538dbb2bcb1, type: 3}
+  - {fileID: 4900000, guid: 730f6ba2a9abe25478f00c77d02a7a10, type: 3}
   dialogPanel: {fileID: 1433751264}
 --- !u!114 &897148625
 MonoBehaviour:
@@ -719,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393a39182cfa7d04d84a379bea11d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusTrigerCollider: 1
+  statusTrigerCollider: 0
 --- !u!212 &897148626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -980,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393a39182cfa7d04d84a379bea11d576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusTrigerCollider: 0
+  statusTrigerCollider: 1
 --- !u!1 &1099992361
 GameObject:
   m_ObjectHideFlags: 0

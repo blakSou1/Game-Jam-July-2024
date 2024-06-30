@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DialogTriger : MonoBehaviour
 {
-    [SerializeField] private TextAsset textDialog;
+    [SerializeField] private List<TextAsset> textDialog;
     [SerializeField] private GameObject dialogPanel;
 
     InkExample dialogScripts;
-    bool statDialog = false;
+    int ind = 0;
 
     private void Start()
     {
@@ -20,18 +20,25 @@ public class DialogTriger : MonoBehaviour
     }
     private void StartDialog()
     {
-        if (!statDialog)
+        if (dialogScripts.enabled == false)
         {
-            statDialog = true;
             dialogScripts.enabled = true;
-            dialogScripts.EndHistory += EndIstory;
+            dialogScripts.EndHistory += EndIs;
+            GetComponent<PointTrigerObject>().trigerE -= StartDialog;
 
-            dialogScripts.StartDialog(textDialog);
+            dialogScripts.StartDialog(textDialog[ind]);
+            if(ind != textDialog.Count - 1)
+                ind++;
         }
     }
-    private void EndIstory()
+    private void EndIs()
     {
-        statDialog = false;
+        dialogScripts.EndHistory -= EndIs;
+        Invoke("EventE", 1f);
+    } 
+    private void EventE()
+    {
+        GetComponent<PointTrigerObject>().trigerE += StartDialog;
     }
     private void OnDisable()
     {

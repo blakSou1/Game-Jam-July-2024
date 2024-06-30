@@ -49,7 +49,7 @@ public class InkExample : MonoBehaviour
             inputE = false;
             foreach (Choice choice in story.currentChoices)
             {
-                Button choiceButton = Instantiate(buttonPrefab, transform) as Button;//проверяем можем ли мы получить у прифаба компонент буттон и получаем его
+                Button choiceButton = Instantiate(buttonPrefab, transform);//проверяем можем ли мы получить у прифаба компонент буттон и получаем его
                 RectTransform buttonRect = choiceButton.GetComponent<RectTransform>();
                 buttonRect.anchorMin = new Vector2(0.2f, 0.1f + 0.15f * choice.index);
                 buttonRect.anchorMax = new Vector2(0.8f, 0.25f + 0.15f * choice.index);
@@ -73,21 +73,12 @@ public class InkExample : MonoBehaviour
     {
         if (inputE)
         {
-            if (!story.canContinue)
-            {
-                player.GetComponent<PlayerTriger>().InputE -= InputHistory;
-                player.GetComponent<PlayerMove>().enabled = true;
-                ClearUI();
-                EndHistory?.Invoke();
-                this.enabled = false;
-            }
             Refresh();
         }
     }
     private void NewImage()
     {
-        GameObject image = Instantiate(imagePrefab, transform) as GameObject;
-        Image imageComponent = image.GetComponent<Image>();
+        GameObject image = Instantiate(imagePrefab, transform);
         RectTransform imageRect = image.GetComponent<RectTransform>();
         imageRect.anchorMin = new Vector2(0.1f, 0.5f);
         imageRect.anchorMax = new Vector2(0.9f, 0.8f);//создаем изображение и задаем положение относительно родителя
@@ -104,7 +95,7 @@ public class InkExample : MonoBehaviour
 
     private void ClearUI()
     {
-        int childCount = this.transform.childCount;
+        int childCount = transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
             GameObject.Destroy(this.transform.GetChild(i).gameObject);
@@ -128,6 +119,14 @@ public class InkExample : MonoBehaviour
             float textHeight = LayoutUtility.GetPreferredHeight(newTextObject.rectTransform);
 
             imageRect.sizeDelta = new Vector2(imageRect.sizeDelta.x, textHeight);
+        }
+        else
+        {
+            player.GetComponent<PlayerTriger>().InputE -= InputHistory;
+            player.GetComponent<PlayerMove>().enabled = true;
+            ClearUI();
+            EndHistory?.Invoke();
+            this.enabled = false;
         }
     }//метод при помощи canContinue проверяет есть ли следующая история
     //а Continue загружает следующую историю
