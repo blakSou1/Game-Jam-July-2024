@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.PlayerMove
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Swimming : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        private Rigidbody _playerRigidbody;
+        private Rigidbody2D _playerRigidbody;
 
         private void Awake()
         {
@@ -15,11 +15,11 @@ namespace Assets.Scripts.Player
 
         private void Swim()
         {
-            var moveInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            var moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            _playerRigidbody.velocity = moveInput.normalized * _speed;
+           _playerRigidbody.AddForce(moveInput * _speed);
 
-            if (moveInput != Vector3.zero)
+            if (moveInput != Vector2.zero)
             {
                 var rotZ = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
