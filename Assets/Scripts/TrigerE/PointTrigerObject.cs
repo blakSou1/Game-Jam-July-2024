@@ -19,7 +19,7 @@ public class PointTrigerObject : MonoBehaviour
         trigerE?.Invoke();
         if(statusTrigerCollider && deleteTrigCol)
         {
-            GetComponent<Collider2D>().enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

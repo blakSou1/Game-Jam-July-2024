@@ -85,6 +85,7 @@ public class InkExample : MonoBehaviour
 
 
         Text text = image.transform.GetComponentInChildren<Text>();
+        text.fontSize = 60;
         RectTransform imageRects = image.GetComponent<RectTransform>();
         RectTransform textRect = text.GetComponent<RectTransform>();
         textRect.anchorMin = new Vector2(0f, 0f);

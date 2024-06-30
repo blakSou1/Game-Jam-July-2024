@@ -49,6 +49,6 @@ public class  PlayerMovement : MonoBehaviour
             }
         }
         else
-            an.SetBool("Point", true);
+            an.SetBool("Point", false);
     }
 }

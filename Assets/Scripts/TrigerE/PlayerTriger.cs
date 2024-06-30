@@ -24,7 +24,7 @@ public class PlayerTriger : MonoBehaviour
             {
                 foreach (var s in hitCol)
                 {
-                    if (s.TryGetComponent(out PointTrigerObject d))
+                    if (s != null && s.TryGetComponent(out PointTrigerObject d) && s.gameObject.activeInHierarchy)
                     {
                         d.StartEvent();
                         break;
