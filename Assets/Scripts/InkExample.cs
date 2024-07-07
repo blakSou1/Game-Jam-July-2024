@@ -24,7 +24,7 @@ public class InkExample : MonoBehaviour
     {
         story = new Story(inkJSONAsset.text);
         player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<PlayerTriger>().InputE += InputHistory;
+        player.GetComponent<PlayerInputETriger>().InputE += InputHistory;
         Refresh();
     }//диалог запускается вызовом этого метода
 
@@ -123,7 +123,7 @@ public class InkExample : MonoBehaviour
         }
         else
         {
-            player.GetComponent<PlayerTriger>().InputE -= InputHistory;
+            player.GetComponent<PlayerInputETriger>().InputE -= InputHistory;
             player.GetComponent<PlayerMovement>().enabled = true;
             ClearUI();
             EndHistory?.Invoke();

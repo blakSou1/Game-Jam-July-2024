@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PointTrigerObject))]
 public class MiniGameFaer : MonoBehaviour
 {
-    [SerializeField] private GameObject objectNaGolove;
-    [SerializeField] private bool statusObject = false;
+    [SerializeField] private List<GameObject> objectUse = new();
+    [SerializeField] private bool oneUse = false;
 
     private void OnEnable()
     {
-        if(statusObject)
-            GetComponent<PointTrigerObject>().trigerE += TrueObject;
-        else
-            GetComponent<PointTrigerObject>().trigerE += FalseObject;
+        GetComponent<PointTrigerObject>().trigerE += ObjectActiveAne;
     }
     private void OnDisable()
     {
-        if (statusObject)
-            GetComponent<PointTrigerObject>().trigerE -= TrueObject;
-        else
-            GetComponent<PointTrigerObject>().trigerE -= FalseObject;
+        GetComponent<PointTrigerObject>().trigerE -= ObjectActiveAne;
     }
-    private void TrueObject()
+
+    private void ObjectActiveAne()
     {
-        if(!objectNaGolove.activeSelf)
-            objectNaGolove.SetActive(true);
-    }
-    private void FalseObject()
-    {
-        if(objectNaGolove.activeSelf)
-            objectNaGolove.SetActive(false);
+        foreach(var a in objectUse)
+        {
+            a.SetActive(!a.activeInHierarchy);
+        }
+        if (oneUse)
+            this.enabled = false;
     }
 }

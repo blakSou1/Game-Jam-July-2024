@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Game/Derewna.unity
+    guid: 573c3986deef70146a34a1d2044586d2
+  - enabled: 1
+    path: Assets/Scenes/Game/PreProrub.unity
+    guid: 6c85741c5e90d0343b9c5c89a15c7ad4
+  - enabled: 1
+    path: Assets/Scenes/Game/Ozero.unity
+    guid: 52f26f49e83e22a47875cc5e35aa116a
+  - enabled: 1
+    path: Assets/Scenes/Game/Prorub.unity
+    guid: e484fa2b649bb5840994de5e91172161
   m_configObjects: {}
