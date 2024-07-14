@@ -8,7 +8,6 @@ public class DialogTriger : MonoBehaviour
 {
     [SerializeField] private List<TextAsset> textDialog;
     [SerializeField] private GameObject dialogPanel;
-    public event Action UseEvent;
 
     InkExample dialogScripts;
     int ind = 0;
@@ -25,7 +24,6 @@ public class DialogTriger : MonoBehaviour
     {
         if (dialogScripts.enabled == false)
         {
-            UseEvent?.Invoke();
             dialogScripts.enabled = true;
             dialogScripts.EndHistory += EndIs;
             GetComponent<PointTrigerObject>().trigerE -= StartDialog;

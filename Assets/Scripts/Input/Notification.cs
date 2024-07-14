@@ -5,30 +5,6 @@ using UnityEngine;
 public class Notification : MonoBehaviour
 {
     [SerializeField] private GameObject notificationImage;
-    [SerializeField] private Object myComponent;
-
-    private void OnEnable()
-    {
-        if(myComponent != null)
-        {
-            if (myComponent is DialogTriger)
-            {
-                DialogTriger dt = (DialogTriger)myComponent;
-                dt.UseEvent += UseFicha;
-            }
-        }
-    }
-    private void OnDisable()
-    {
-        if (myComponent != null)
-        {
-            if (myComponent is DialogTriger)
-            {
-                DialogTriger dt = (DialogTriger)myComponent;
-                dt.UseEvent -= UseFicha;
-            }
-        }
-    }
 
     private void UseFicha()
     {
@@ -47,5 +23,10 @@ public class Notification : MonoBehaviour
         {
             notificationImage.SetActive(false);
         }
+    }
+    private void OnDisable()
+    {
+        if(notificationImage.activeInHierarchy)
+            notificationImage.SetActive(false);
     }
 }

@@ -7,8 +7,11 @@ using UnityEngine.SceneManagement;
 public class CreatScene : MonoBehaviour
 {
     [SerializeField] private string sceneLoad;
+    [SerializeField] private int trigerNumberSpawnPoint;
+
     private void LoadScene()
     {
+        StaticCreatScenePosition.trigerSceneSpawnNumber = trigerNumberSpawnPoint;
         SceneManager.LoadScene(sceneLoad);
     }
     private void OnEnable()
