@@ -34,7 +34,7 @@ public class FishCotcaMiniGame : MonoBehaviour
         }
     }
 
-    private bool startEvent = false;
+    private bool startEvent = true;
     private void StartEvent()
     {
         if (startEvent)

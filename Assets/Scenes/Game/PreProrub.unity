@@ -597,6 +597,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013036321}
   m_CullTransparentMesh: 1
+--- !u!1 &1015756252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015756253}
+  m_Layer: 0
+  m_Name: SpawnPlayer (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1015756253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015756252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 43.4, y: -0.09646883, z: -0.29820752}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1082092728
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 1368062631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.71, y: -0.71, z: 22.700544}
+  m_LocalPosition: {x: 48.9, y: 0.4, z: 22.700544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -903,6 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoad: Prorub
+  trigerNumberSpawnPoint: 0
 --- !u!114 &1368062635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +960,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteColliderNextUpdate: 0
+--- !u!1 &1678895608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678895609}
+  m_Layer: 0
+  m_Name: SpawnPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678895609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678895608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -43.1, y: 0.09, z: -0.29820752}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1869952441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1065,7 @@ Transform:
   m_GameObject: {fileID: 1869952441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.6, y: -0.71, z: 22.700544}
+  m_LocalPosition: {x: -48.2, y: 1.8, z: 22.700544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1021,6 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoad: Derewna
+  trigerNumberSpawnPoint: 1
 --- !u!114 &1869952445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1125,7 @@ GameObject:
   - component: {fileID: 1941106770}
   - component: {fileID: 1941106769}
   - component: {fileID: 1941106775}
+  - component: {fileID: 1941106776}
   m_Layer: 0
   m_Name: Choo
   m_TagString: Untagged
@@ -1254,6 +1319,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95a2add6aa89e74dad8235cf4ce9d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1941106776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941106768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdbf744f1b13964a9a20d0ceae464a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionSpawnPlayer:
+  - {fileID: 1678895609}
+  - {fileID: 1015756253}
 --- !u!1 &2009206217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,3 +1524,5 @@ SceneRoots:
   - {fileID: 451864488}
   - {fileID: 1100318807}
   - {fileID: 2009206219}
+  - {fileID: 1678895609}
+  - {fileID: 1015756253}
